@@ -136,16 +136,19 @@ def roller(in_string):
 
         if x in o_index:
             if in_string[x] == '+':
-                rolls.append(int(in_string[x + 1:(index_list[z + 1])]))
+                rolls.append(int(in_string[x + 1:(index_list[z + 1])]))         # append positive number according to proper index to rolls list for final sum
             if in_string[x] == '-':
                 neg = 0 - int(in_string[x + 1:(index_list[z + 1])])
-                rolls.append(neg)
-            if in_string[x] == '*':  # add previous roll(s), multiply by next inde
-                add_rolls()
-                int(in_string[x + 1:(index_list[z + 1])])
+                rolls.append(neg)                                               # append negative number according to proper index to rolls list for final sum
+            if in_string[x] == '*':  # add previous roll(s), multiply by next index
+                prev_roll = add_rolls()
+                multiplicative = int(in_string[x + 1:(index_list[z + 1])])      # Create multiplier from proper index
+                rolls.append(prev_roll*multiplicative)                          # Multiply previous rolls and add back to roll list
             if in_string[x] == '/':
-                add_rolls()
-                int(in_string[x + 1:(index_list[z + 1])])
+                prev_roll = add_rolls()
+                divisor = int(in_string[x + 1:(index_list[z + 1])])             # Create divisor from proper index
+                rolls.append(prev_roll/divisor)                                 # Divide previous rolls and add back to roll list
+
 
         # take first index, find its match. if it is a normal die, get the number of those dice.
 
@@ -154,6 +157,7 @@ def add_rolls():
     total = 0
     for x in rolls:
         total += x
+    return total
 
 
 if __name__ == '__main__':
