@@ -1,6 +1,8 @@
 import random
 
 # global variables for function calculations
+from math import ceil
+
 rolls = []
 index_list = [0]  # index list, for operation order
 d_index = []  # separate dice rolls         'd'
@@ -143,11 +145,15 @@ def roller(in_string):
             if in_string[x] == '*':  # add previous roll(s), multiply by next index
                 prev_roll = add_rolls()
                 multiplicative = int(in_string[x + 1:(index_list[z + 1])])      # Create multiplier from proper index
-                rolls.append(prev_roll*multiplicative)                          # Multiply previous rolls and add back to roll list
+                # TODO: remove previous roll from rolls[], replace with new_num, the prev roll multiplied
+                new_num = (prev_roll*multiplicative)
+                rolls.append(new_num)                          # Multiply previous rolls and add back to roll list
             if in_string[x] == '/':
                 prev_roll = add_rolls()
                 divisor = int(in_string[x + 1:(index_list[z + 1])])             # Create divisor from proper index
-                rolls.append(prev_roll/divisor)                                 # Divide previous rolls and add back to roll list
+                # TODO: remove previous roll from rolls[], replace with new_num, the prev roll divided
+                new_num = ceil(prev_roll/divisor)
+                rolls.append(new_num)                                 # Divide previous rolls and add back to roll list
 
 
         # take first index, find its match. if it is a normal die, get the number of those dice.
