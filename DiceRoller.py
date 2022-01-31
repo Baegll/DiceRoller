@@ -3,6 +3,7 @@ import random
 # global variables for function calculations
 from math import ceil
 
+finished_rolls = []
 rolls = []
 index_list = [0]  # index list, for operation order
 d_index = []  # separate dice rolls         'd'
@@ -133,30 +134,32 @@ def roller(in_string):
                 rolls.append(roll)
 
         if x in s_index:
-            print(x)
-            # TODO: separate commands by whitespace/|
+            # add individual rolls, store as number in finished_rolls
+            finished_rolls.append(add_rolls())
+            # clear rolls[]
+            rolls.clear()
+            # let program continue
 
         if x in o_index:
             if in_string[x] == '+':
-                rolls.append(int(in_string[x + 1:(index_list[z + 1])]))         # append positive number according to proper index to rolls list for final sum
+                rolls.append(int(in_string[x + 1:(index_list[z + 1])]))  # append positive number according to proper index to rolls list for final sum
             if in_string[x] == '-':
                 neg = 0 - int(in_string[x + 1:(index_list[z + 1])])
-                rolls.append(neg)                                               # append negative number according to proper index to rolls list for final sum
+                rolls.append(neg)  # append negative number according to proper index to rolls list for final sum
             if in_string[x] == '*':  # add previous roll(s), multiply by next index
                 prev_roll = add_rolls()
-                multiplicative = int(in_string[x + 1:(index_list[z + 1])])      # Create multiplier from proper index
+                multiplicative = int(in_string[x + 1:(index_list[z + 1])])  # Create multiplier from proper index
                 # TODO: remove previous roll from rolls[], replace with new_num, the prev roll multiplied
-                new_num = (prev_roll*multiplicative)
-                rolls.append(new_num)                          # Multiply previous rolls and add back to roll list
+                new_num = (prev_roll * multiplicative)
+                rolls.append(new_num)  # Multiply previous rolls and add back to roll list
             if in_string[x] == '/':
                 prev_roll = add_rolls()
-                divisor = int(in_string[x + 1:(index_list[z + 1])])             # Create divisor from proper index
+                divisor = int(in_string[x + 1:(index_list[z + 1])])  # Create divisor from proper index
                 # TODO: remove previous roll from rolls[], replace with new_num, the prev roll divided
-                new_num = ceil(prev_roll/divisor)
-                rolls.append(new_num)                                 # Divide previous rolls and add back to roll list
-
-
-        # take first index, find its match. if it is a normal die, get the number of those dice.
+                new_num = ceil(prev_roll / divisor)
+                rolls.append(new_num)  # Divide previous rolls and add back to roll list
+    # once done with operations, add it to finished roll list
+    finished_rolls.append(add_rolls())
 
 
 def add_rolls():
@@ -166,6 +169,13 @@ def add_rolls():
     return total
 
 
+def print_dice():
+    print_string = ""
+    for x in finished_rolls:
+        print_string += str(x) + "\t"
+    print(print_string)
+
+
 if __name__ == '__main__':
     in_str = input()
     dice_parser(in_str)
@@ -173,7 +183,7 @@ if __name__ == '__main__':
     roller(in_str)
 
     # print index lists
-    print(rolls)
+    print_dice()
     """print(index_list)
     print(d_index)
     print(s_index)
