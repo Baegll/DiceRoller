@@ -3,7 +3,7 @@ Given user-input, parses string and rolls dice according to their instructions.
 
 Features:
 
-Includes options for Seperate dice rolls using ',', '|' seperators
+Includes option for Separate dice rolls using ',', '|' separators
 
 Math operations on top of rolls, including '+', '-', '*', '/' operators
 
@@ -14,3 +14,6 @@ Keeping Lowest/Lose Highest rolls from a set of dice using 'o', 'i' operators
 Exploding Dice using 'e' operator
 
 Re-Roll Dice using 'r' operator
+
+## Known Bugs:
+| separator crashes program, lose lowest/keep highest unimplemented, Keeping lowest/losing highest unimplemented, exploding dice unimplemented, re-roll unimplemented.
