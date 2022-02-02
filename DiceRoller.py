@@ -158,6 +158,48 @@ def roller(in_string):
                 # TODO: remove previous roll from rolls[], replace with new_num, the prev roll divided
                 new_num = ceil(prev_roll / divisor)
                 rolls.append(new_num)  # Divide previous rolls and add back to roll list
+
+        if x in b_index:
+            if in_string[x] == 'l':
+                lose_these_dice = int(in_string[x + 1:(index_list[z + 1])])   # This is the number of dice to lose
+                # Sort rolls[] highest->lowest: pop values until rolls[]size == original_size - lose_these_dice
+                rolls.sort(reverse=True)
+                print(rolls)        # DEBUG STATEMENT
+                for y in range(0, lose_these_dice):
+                    rolls.pop()
+                print(rolls)        # DEBUG STATEMENT
+            if in_string[x] == 'k':
+                keep_these_dice = int(in_string[x + 1:(index_list[z + 1])])     # This is the number of dice to keep
+                # Sort rolls[] highest->lowest: pop values until rolls[]size == keep_these_dice
+                rolls.sort(reverse=True)
+                print(rolls)        # DEBUG STATEMENT
+                while len(rolls) != keep_these_dice:
+                    rolls.pop()
+                print(rolls)        # DEBUG STATEMENT
+
+        if x in rb_index:
+            if in_string[x] == 'o':
+                keep_these_dice = int(in_string[x + 1:(index_list[z + 1])])  # This is the number of dice to keep
+                # Sort rolls[] highest->lowest: pop values until rolls[]size == original_size - lose_these_dice
+                rolls.sort()
+                print(rolls)  # DEBUG STATEMENT
+                for y in range(0, keep_these_dice):
+                    rolls.pop()
+                print(rolls)  # DEBUG STATEMENT
+            if in_string[x] == 'i':
+                lose_these_dice = int(in_string[x + 1:(index_list[z + 1])])  # This is the number of dice to lose
+                # Sort rolls[] highest->lowest: pop values until rolls[]size == keep_these_dice
+                rolls.sort()
+                print(rolls)  # DEBUG STATEMENT
+                while len(rolls) != lose_these_dice:
+                    rolls.pop()
+                print(rolls)  # DEBUG STATEMENT
+
+        if x in e_index:
+            # TODO: Exploding Dice
+            explode_on = int(in_string[x + 1:(index_list[z + 1])])      # I.E. Dice Size
+            # for every value in rolls[] == explode_on, make a new roll in rolls[], then test the new rolls for exploding
+
     # once done with operations, add it to finished roll list
     finished_rolls.append(add_rolls())
 
