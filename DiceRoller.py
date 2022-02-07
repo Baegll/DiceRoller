@@ -197,8 +197,24 @@ def roller(in_string):
 
         if x in e_index:
             # TODO: Exploding Dice
+            explode_rolls = []
             explode_on = int(in_string[x + 1:(index_list[z + 1])])      # I.E. Dice Size
-            # for every value in rolls[] == explode_on, make a new roll in rolls[], then test the new rolls for exploding
+
+            # Test rolls[] for every value that == explode_on, make a new roll in explode_rolls
+            for roll_value in rolls:
+                if explode_on == roll_value:
+                    roll = random.randint(1, explode_on)
+                    explode_rolls.append(roll)
+                    # roll and append to explode_rolls
+
+            # If no exploding dice, the below While loop does not execute
+            # pop values from explode_rolls and test if they explode, append each popped value to rolls[]
+            while len(explode_rolls) > 0:
+                roll_value = explode_rolls.pop()
+                if explode_on == roll_value:
+                    roll = random.randint(1, explode_on)
+                    explode_rolls.append(roll)
+                rolls.append(roll_value)
 
     # once done with operations, add it to finished roll list
     finished_rolls.append(add_rolls())
