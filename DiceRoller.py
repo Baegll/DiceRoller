@@ -120,6 +120,8 @@ def dice_parser(in_string):
         current_index += 1
 
 
+
+
 def roller(in_string):
     z = -1  # set index counter to "0" since i increase z at beginning of loop
     for x in index_list:
@@ -196,14 +198,26 @@ def roller(in_string):
                 print(rolls)  # DEBUG STATEMENT
 
         if x in e_index:
-            # TODO: Exploding Dice
+            if x == 'r':
+                # TODO: Reroll
+                re_roll_on = int(in_string[x + 1:(index_list[z + 1])])
+                dice_size = int(in_string[x + 1:(index_list[z+1])])
+
+                i = 0
+                for roll_value in rolls:
+                    if re_roll_on == roll_value:
+                        re_roll_value = random.randint(1, dice_size)    # TODO: Modular Rerroll, based on user input
+                        rolls[i] = re_roll_value
+                    i += 1
+
+            # if re-roll, do above, else its exploding dice, so do below
             explode_rolls = []
             explode_on = int(in_string[x + 1:(index_list[z + 1])])      # I.E. Dice Size
 
             # Test rolls[] for every value that == explode_on, make a new roll in explode_rolls
             for roll_value in rolls:
                 if explode_on == roll_value:
-                    roll = random.randint(1, explode_on)
+                    roll = random.randint(1, explode_on)        # TODO: Modular explode_on, based on user input
                     explode_rolls.append(roll)
                     # roll and append to explode_rolls
 
