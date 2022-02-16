@@ -166,40 +166,39 @@ def roller(in_string):
                 lose_these_dice = int(in_string[x + 1:(index_list[z + 1])])   # This is the number of dice to lose
                 # Sort rolls[] highest->lowest: pop values until rolls[]size == original_size - lose_these_dice
                 rolls.sort(reverse=True)
-                print(rolls)        # DEBUG STATEMENT
+                # print(rolls)        # DEBUG STATEMENT
                 for y in range(0, lose_these_dice):
                     rolls.pop()
-                print(rolls)        # DEBUG STATEMENT
+                # print(rolls)        # DEBUG STATEMENT
             if in_string[x] == 'k':
                 keep_these_dice = int(in_string[x + 1:(index_list[z + 1])])     # This is the number of dice to keep
                 # Sort rolls[] highest->lowest: pop values until rolls[]size == keep_these_dice
                 rolls.sort(reverse=True)
-                print(rolls)        # DEBUG STATEMENT
+                # print(rolls)        # DEBUG STATEMENT
                 while len(rolls) != keep_these_dice:
                     rolls.pop()
-                print(rolls)        # DEBUG STATEMENT
+                # print(rolls)        # DEBUG STATEMENT
 
         if x in rb_index:
             if in_string[x] == 'o':
                 keep_these_dice = int(in_string[x + 1:(index_list[z + 1])])  # This is the number of dice to keep
                 # Sort rolls[] highest->lowest: pop values until rolls[]size == original_size - lose_these_dice
                 rolls.sort()
-                print(rolls)  # DEBUG STATEMENT
+                # print(rolls)  # DEBUG STATEMENT
                 for y in range(0, keep_these_dice):
                     rolls.pop()
-                print(rolls)  # DEBUG STATEMENT
+                # print(rolls)  # DEBUG STATEMENT
             if in_string[x] == 'i':
                 lose_these_dice = int(in_string[x + 1:(index_list[z + 1])])  # This is the number of dice to lose
                 # Sort rolls[] highest->lowest: pop values until rolls[]size == keep_these_dice
                 rolls.sort()
-                print(rolls)  # DEBUG STATEMENT
+                # print(rolls)  # DEBUG STATEMENT
                 while len(rolls) != lose_these_dice:
                     rolls.pop()
-                print(rolls)  # DEBUG STATEMENT
+                # print(rolls)  # DEBUG STATEMENT
 
         if x in e_index:
             if x == 'r':
-                # TODO: Reroll
                 re_roll_on = int(in_string[x + 1:(index_list[z + 1])])
                 dice_size = int(in_string[x + 1:(index_list[z+1])])
 
