@@ -1,35 +1,30 @@
 import re
+import DiceClasses
 
 
 def dice_parser(dice_string):
-    _state = 0
-    # 0 = empty
-    # 1 = number of dice
-    # 2 = d
-    # 3 = size of die
-    # 4 = new die/Whitespace,|
-    # 5 = Math operation
-    # 6 = Explode/Re-roll
-    # 7 = lose/keep
-    # 8 = r_lose/r_keep
-    # 9 = manipulation number for states 6,7,8
-    # 10 = op_number for Math
-    # 11 = END
 
-    op_string = ''.join([i for i in dice_string if not i.isdigit()])
-    print(op_string)
+    op_string = list(filter(None, re.split(r'[d0-9]', dice_string)))
+#    print(op_string)
+    num_list = re.split(r'[a-z+*/\-]', dice_string)
+#    print(num_list)
+    dice_class = DiceClasses.DiceGroup(num_list, op_string)
 
 
 if __name__ == '__main__':
     in_str = input()
 
     dice_rolls = re.split(r'[,|]', in_str)
-    regex = "(\\d+d{1}\\d+$)|(d{1}\\d+$)|(\\d+d{1}\\d+[kloier+\\-/\\*]\\d+$)|(d{1}\\d+[kloier+\\-/\\*]\\d+$)|(\\d+d{" \
-            "1}\\d+(?:[kloier+\\-/\\*]{1}\\d+)+)|(d{1}\\d+(?:[kloier+\\-/\\*]{1}\\d+)+)"
+    regex = '(\\d+)?d(\\d+)([kloier]?[\\d+]([+\\-*/]\\d+)?)*'
+    valid_format = True
     for dice in dice_rolls:
         if re.match(regex, dice):
             pass
         else:
             print("Invalid Format: " + dice)
+            valid_format = False
             break
 
+    if valid_format:
+        for dice in dice_rolls:
+            dice_parser(dice)
