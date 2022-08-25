@@ -63,6 +63,35 @@ def dice_avg(d_num, d_size, op_list):
     return d_list
 
 
+def lose_lowest(d_list, op_num):
+    for x in range(0, op_num):
+        d_list.remove(min(d_list))
+    return d_list
+
+
+def lose_highest(d_list, op_num):
+    for x in range(0, op_num):
+        d_list.remove(max(d_list))
+    return d_list
+
+
+# TODO: Fix explode_dice
+def explode_dice(d_list, d_size, op_num, new_list):
+    print(d_list + new_list)
+    n_dice = 0
+    explode_list = []
+    if op_num == 1:
+        print("1 would explode indefinitely, using max die size..")
+        op_num = d_size
+    for die in d_list:
+        if die == op_num:
+            n_dice = n_dice + 1
+    if n_dice > 0:
+        explode_list = explode_dice(dice_rand(n_dice, d_size), d_size, op_num, [])
+
+    return new_list + explode_list
+
+
 '''
 def math_op(value, op_num, op_type):
     if op_type == '+':
