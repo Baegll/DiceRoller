@@ -15,7 +15,7 @@ class DiceGroup:
         size = int(self.dice[1])     # Second value of dice list will always be size
 
         low = [1 * num]
-        rand = dice_rand(num, size)
+    #    rand = dice_rand(num, size)
         avg = dice_avg(num, size, command_list)
         print("avg: " + str(avg))
         high = [size * num]
@@ -54,11 +54,13 @@ def dice_rand(d_num, d_size):
 
 
 def dice_avg(d_num, d_size, op_list):
-    if 'e' in op_list:
-        avg_val = d_num * (d_size/2+1)
-    else:
-        avg_val = d_num * (d_size/2+.5)
-    return [int(avg_val)]
+    d_list = []
+    for die in range(0, d_num):
+        if 'e' in op_list:
+            d_list.append(int((d_size/2+1)))
+        else:
+            d_list.append(int((d_size/2+.5)))
+    return d_list
 
 
 '''
