@@ -4,6 +4,8 @@ import json
 import os
 
 math_op_list = ['+', '-', '*', '/']
+lose_op_list = ['l', 'k']
+keep_op_list = ['o', 'i']
 
 
 class DiceGroup:
@@ -15,16 +17,40 @@ class DiceGroup:
         size = int(self.dice[1])     # Second value of dice list will always be size
 
         low = [1 * num]
-    #    rand = dice_rand(num, size)
-        avg = dice_avg(num, size, command_list)
+        avg = dice_avg(num, size, command_list) # TODO: Fix to have list of average
+        rand = dice_rand(num, size)
         print("avg: " + str(avg))
         high = [size * num]
 
         index = 1
         for command in self.command_list:
             if command in math_op_list:
-                index = index + 1   # We use index, so increase value
-                # print(math_op(low, int(self.dice[index]), command))
+                index = index + 1
+                # math_op()
+            elif command in lose_op_list:
+                index = index + 1
+                lose_lowest(low, index)
+                lose_lowest(avg, index)
+                lose_lowest(rand, index)
+                lose_lowest(high, index)
+            elif command in keep_op_list:
+                index = index + 1
+                lose_highest(low, index)
+                lose_highest(avg, index)
+                lose_highest(rand, index)
+                lose_highest(high, index)
+            elif command == 'e':
+                index = index + 1
+                explode_dice(low, size, index)
+                explode_dice(low, size, index)
+                explode_dice(low, size, index)
+                explode_dice(low, size, index)
+            elif command == 'r':
+                index = index + 1
+                re_roll_dice(low, size, index)
+                re_roll_dice(avg, size, index)
+                re_roll_dice(rand, size, index)
+                re_roll_dice(high, size, index)
 
 
 def dice_rand(d_num, d_size):
@@ -75,24 +101,28 @@ def lose_highest(d_list, op_num):
     return d_list
 
 
-# TODO: Fix explode_dice
-def explode_dice(d_list, d_size, op_num, new_list):
-    print(d_list + new_list)
+def explode_dice(d_list, d_size, op_num):
     n_dice = 0
-    explode_list = []
     if op_num == 1:
         print("1 would explode indefinitely, using max die size..")
         op_num = d_size
     for die in d_list:
-        if die == op_num:
+        if die >= op_num:
             n_dice = n_dice + 1
     if n_dice > 0:
-        explode_list = explode_dice(dice_rand(n_dice, d_size), d_size, op_num, [])
+        return d_list + explode_dice(dice_rand(n_dice, d_size), d_size, op_num)
+    return d_list
 
-    return new_list + explode_list
+
+def re_roll_dice(d_list, d_size, op_num):
+    n_dice = 0
+    for die in d_list:
+        if die <= op_num:
+            n_dice = n_dice + 1
+            d_list.remove(die)
+            return d_list + dice_rand(n_dice, d_size)
 
 
-'''
 def math_op(value, op_num, op_type):
     if op_type == '+':
         return op_num
@@ -105,4 +135,3 @@ def math_op(value, op_num, op_type):
     else:
         print("Error with math_op")
 
-'''

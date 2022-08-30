@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23000273-6649-4e87-9fdf-189f8a2b313b" name="Changes" comment="changes to average roll for later convenience">
+    <list default="true" id="23000273-6649-4e87-9fdf-189f8a2b313b" name="Changes" comment="explode dice attempt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DiceClasses.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiceClasses.py" afterDir="false" />
     </list>
@@ -98,7 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661462271784</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="explode dice attempt">
+      <created>1661467437216</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1661467437216</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -117,6 +124,7 @@
     <MESSAGE value="changes ground-up" />
     <MESSAGE value="Created random and average. Base concept for math_ops in comment" />
     <MESSAGE value="changes to average roll for later convenience" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes to average roll for later convenience" />
+    <MESSAGE value="explode dice attempt" />
+    <option name="LAST_COMMIT_MESSAGE" value="explode dice attempt" />
   </component>
 </project>
