@@ -7,6 +7,7 @@
     <list default="true" id="23000273-6649-4e87-9fdf-189f8a2b313b" name="Changes" comment="explode dice attempt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DiceClasses.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiceClasses.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiceRoller.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiceRoller.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

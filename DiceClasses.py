@@ -9,48 +9,83 @@ keep_op_list = ['o', 'i']
 
 
 class DiceGroup:
-    def __init__(self, dice, command_list):
+    def __init__(self, dice, command_list, default):
         self.dice = dice
         self.command_list = command_list
-
+        self.low = default
+        self.avg = default
+        self.rand = default
+        self.high = default
         num = int(self.dice[0])      # First value of dice list will always be the number
         size = int(self.dice[1])     # Second value of dice list will always be size
 
-        low = [1 * num]
-        avg = dice_avg(num, size, command_list) # TODO: Fix to have list of average
-        rand = dice_rand(num, size)
-        print("avg: " + str(avg))
-        high = [size * num]
+        self.low = dice_low(num)
+        self.avg = dice_avg(num, size, command_list)
+        self.rand = dice_rand(num, size)
+        self.high = dice_high(size,num)
 
         index = 1
         for command in self.command_list:
             if command in math_op_list:
                 index = index + 1
-                # math_op()
+                self.low.append(math_op(self.low, index, command))
+                self.avg.append(math_op(self.avg, index, command))
+                self.rand.append(math_op(self.rand, index, command))
+                self.high.append(math_op(self.high, index, command))
             elif command in lose_op_list:
                 index = index + 1
-                lose_lowest(low, index)
-                lose_lowest(avg, index)
-                lose_lowest(rand, index)
-                lose_lowest(high, index)
+                self.low = lose_lowest(self.low, index)
+                self.avg = lose_lowest(self.avg, index)
+                self.rand = lose_lowest(self.rand, index)
+                self.high = lose_lowest(self.high, index)
             elif command in keep_op_list:
                 index = index + 1
-                lose_highest(low, index)
-                lose_highest(avg, index)
-                lose_highest(rand, index)
-                lose_highest(high, index)
+                self.low = lose_highest(self.low, index)
+                self.avg = lose_highest(self.avg, index)
+                self.rand = lose_highest(self.rand, index)
+                self.high = lose_highest(self.high, index)
             elif command == 'e':
                 index = index + 1
-                explode_dice(low, size, index)
-                explode_dice(low, size, index)
-                explode_dice(low, size, index)
-                explode_dice(low, size, index)
+                self.low = explode_dice(self.low, size, index)
+                self.avg = explode_dice(self.avg, size, index)
+                self.rand = explode_dice(self.rand, size, index)
+                self.high = explode_dice(self.high, size, index)
             elif command == 'r':
                 index = index + 1
-                re_roll_dice(low, size, index)
-                re_roll_dice(avg, size, index)
-                re_roll_dice(rand, size, index)
-                re_roll_dice(high, size, index)
+                self.low = re_roll_dice(self.low, size, index)
+                self.avg = re_roll_dice(self.avg, size, index)
+                self.rand = re_roll_dice(self.rand, size, index)
+                self.high = re_roll_dice(self.high, size, index)
+        # Completed list of low, avg, random, and high values.
+
+    def get_low(self):
+        return self.low
+
+    def get_avg(self):
+        return self.avg
+
+    def get_rand(self):
+        return self.rand
+
+    def get_high(self):
+        return self.high
+
+
+def dice_low(d_num):
+    d_list = []
+    for die in range(0, d_num):
+        d_list.append(1)
+    return d_list
+
+
+def dice_avg(d_num, d_size, op_list):
+    d_list = []
+    for die in range(0, d_num):
+        if 'e' in op_list:
+            d_list.append(int((d_size/2+1)))
+        else:
+            d_list.append(int((d_size/2+.5)))
+    return d_list
 
 
 def dice_rand(d_num, d_size):
@@ -73,19 +108,21 @@ def dice_rand(d_num, d_size):
                              data=rand_org_data,
                              headers=headers
                              )
+    # If response not good, use randint()
+
     data = response.json()
     # print(data)
     values = data['result']['random']['data']
-    return values
+    d_list = []
+    for value in values:
+        d_list.append(value)
+    return d_list
 
 
-def dice_avg(d_num, d_size, op_list):
+def dice_high(d_size, d_num):
     d_list = []
     for die in range(0, d_num):
-        if 'e' in op_list:
-            d_list.append(int((d_size/2+1)))
-        else:
-            d_list.append(int((d_size/2+.5)))
+        d_list.append(d_size)
     return d_list
 
 
@@ -123,15 +160,38 @@ def re_roll_dice(d_list, d_size, op_num):
             return d_list + dice_rand(n_dice, d_size)
 
 
-def math_op(value, op_num, op_type):
+def math_op(d_list, op_num, op_type):
     if op_type == '+':
         return op_num
     elif op_type == '-':
         return 0 - op_num
-    elif op_type == '*':    # TODO: Fix Multiply
-        return 3 * op_num
-    elif op_type == '/':    # TODO: Fix Division
-        return int(3 / op_num)
+    elif op_type == '*':
+        tot = 0
+        # Add all values in list
+        for v in d_list:
+            tot += v
+        # get end total after multiplication
+        mult = tot * op_num
+        # get value that it end total-starting total
+        mult = mult - tot
+        return mult
+    elif op_type == '/':
+        tot = 0
+        # Add all values in list
+        for v in d_list:
+            tot += v
+        # get total after divisor
+        divisor = tot / op_num
+        # return value that will make current list into the correct quotient
+        '''
+        tot-9
+        divisor-3
+        divisor = tot-divisor
+        new_divisor = 6
+        now make new_divisor negative
+        '''
+        divisor = 0 - (tot - divisor)
+        return divisor
     else:
         print("Error with math_op")
 

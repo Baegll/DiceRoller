@@ -8,7 +8,11 @@ def dice_parser(dice_string):
 #    print(op_string)
     num_list = re.split(r'[a-z+*/\-]', dice_string)
 #    print(num_list)
-    dice_class = DiceClasses.DiceGroup(num_list, op_string)
+    dice_class = DiceClasses.DiceGroup(num_list, op_string, [])
+    print(dice_class.get_low())
+    print(dice_class.get_avg())
+    print(dice_class.get_rand())
+    print(dice_class.get_high())
 
 
 if __name__ == '__main__':
