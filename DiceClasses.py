@@ -22,40 +22,40 @@ class DiceGroup:
         self.low = dice_low(num)
         self.avg = dice_avg(num, size, command_list)
         self.rand = dice_rand(num, size)
-        self.high = dice_high(size,num)
+        self.high = dice_high(size, num)
 
         index = 1
         for command in self.command_list:
             if command in math_op_list:
                 index = index + 1
-                self.low.append(math_op(self.low, index, command))
-                self.avg.append(math_op(self.avg, index, command))
-                self.rand.append(math_op(self.rand, index, command))
-                self.high.append(math_op(self.high, index, command))
+                self.low.append(math_op(self.low, self.dice[index], command))
+                self.avg.append(math_op(self.avg, self.dice[index], command))
+                self.rand.append(math_op(self.rand, self.dice[index], command))
+                self.high.append(math_op(self.high, self.dice[index], command))
             elif command in lose_op_list:
                 index = index + 1
-                self.low = lose_lowest(self.low, index)
-                self.avg = lose_lowest(self.avg, index)
-                self.rand = lose_lowest(self.rand, index)
-                self.high = lose_lowest(self.high, index)
+                self.low = lose_lowest(self.low, self.dice[index])
+                self.avg = lose_lowest(self.avg, self.dice[index])
+                self.rand = lose_lowest(self.rand, self.dice[index])
+                self.high = lose_lowest(self.high, self.dice[index])
             elif command in keep_op_list:
                 index = index + 1
-                self.low = lose_highest(self.low, index)
-                self.avg = lose_highest(self.avg, index)
-                self.rand = lose_highest(self.rand, index)
-                self.high = lose_highest(self.high, index)
+                self.low = lose_highest(self.low, self.dice[index])
+                self.avg = lose_highest(self.avg, self.dice[index])
+                self.rand = lose_highest(self.rand, self.dice[index])
+                self.high = lose_highest(self.high, self.dice[index])
             elif command == 'e':
                 index = index + 1
-                self.low = explode_dice(self.low, size, index)
-                self.avg = explode_dice(self.avg, size, index)
-                self.rand = explode_dice(self.rand, size, index)
-                self.high = explode_dice(self.high, size, index)
+                self.low = explode_dice(self.low, size, self.dice[index])
+                self.avg = explode_dice(self.avg, size, self.dice[index])
+                self.rand = explode_dice(self.rand, size, self.dice[index])
+                self.high = explode_dice(self.high, size, self.dice[index])
             elif command == 'r':
                 index = index + 1
-                self.low = re_roll_dice(self.low, size, index)
-                self.avg = re_roll_dice(self.avg, size, index)
-                self.rand = re_roll_dice(self.rand, size, index)
-                self.high = re_roll_dice(self.high, size, index)
+                self.low = re_roll_dice(self.low, size, self.dice[index])
+                self.avg = re_roll_dice(self.avg, size, self.dice[index])
+                self.rand = re_roll_dice(self.rand, size, self.dice[index])
+                self.high = re_roll_dice(self.high, size, self.dice[index])
         # Completed list of low, avg, random, and high values.
 
     def get_low(self):
@@ -162,9 +162,9 @@ def re_roll_dice(d_list, d_size, op_num):
 
 def math_op(d_list, op_num, op_type):
     if op_type == '+':
-        return op_num
+        return int(op_num)
     elif op_type == '-':
-        return 0 - op_num
+        return 0 - int(op_num)
     elif op_type == '*':
         tot = 0
         # Add all values in list
@@ -174,7 +174,7 @@ def math_op(d_list, op_num, op_type):
         mult = tot * op_num
         # get value that it end total-starting total
         mult = mult - tot
-        return mult
+        return int(mult)
     elif op_type == '/':
         tot = 0
         # Add all values in list
@@ -191,7 +191,7 @@ def math_op(d_list, op_num, op_type):
         now make new_divisor negative
         '''
         divisor = 0 - (tot - divisor)
-        return divisor
+        return int(divisor)
     else:
         print("Error with math_op")
 
