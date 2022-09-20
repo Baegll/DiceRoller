@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23000273-6649-4e87-9fdf-189f8a2b313b" name="Changes" comment="added many functions to get values of things">
+    <list default="true" id="23000273-6649-4e87-9fdf-189f8a2b313b" name="Changes" comment="fixed bug with math_op adding string to low,avg,rand,high number lists.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DiceClasses.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiceClasses.py" afterDir="false" />
     </list>
@@ -112,7 +112,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662308965391</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fixed bug with math_op adding string to low,avg,rand,high number lists.">
+      <created>1662493253351</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1662493253351</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,6 +140,7 @@
     <MESSAGE value="changes to average roll for later convenience" />
     <MESSAGE value="explode dice attempt" />
     <MESSAGE value="added many functions to get values of things" />
-    <option name="LAST_COMMIT_MESSAGE" value="added many functions to get values of things" />
+    <MESSAGE value="fixed bug with math_op adding string to low,avg,rand,high number lists." />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug with math_op adding string to low,avg,rand,high number lists." />
   </component>
 </project>

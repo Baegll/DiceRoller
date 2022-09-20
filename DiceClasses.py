@@ -61,16 +61,28 @@ class DiceGroup:
         # Completed list of low, avg, random, and high values.
 
     def get_low(self):
-        return self.low
+        tot = 0
+        for x in self.low:
+            tot += x
+        return tot, self.low
 
     def get_avg(self):
-        return self.avg
+        tot = 0
+        for x in self.avg:
+            tot += x
+        return tot, self.avg
 
     def get_rand(self):
-        return self.rand
+        tot = 0
+        for x in self.rand:
+            tot += x
+        return tot, self.rand
 
     def get_high(self):
-        return self.high
+        tot = 0
+        for x in self.high:
+            tot += x
+        return tot, self.high
 
 
 def dice_low(d_num):
@@ -201,4 +213,3 @@ def math_op(d_list, op_num, op_type):
         return int(divisor)
     else:
         print("Error with math_op")
-
