@@ -1,4 +1,6 @@
 # Dice Class
+from random import randint
+
 import requests
 import json
 import os
@@ -108,15 +110,20 @@ def dice_rand(d_num, d_size):
                              data=rand_org_data,
                              headers=headers
                              )
-    # If response not good, use randint()
-
-    data = response.json()
-    # print(data)
-    values = data['result']['random']['data']
+    # If response good, use the values random.org provided, else use randint()
     d_list = []
-    for value in values:
-        d_list.append(value)
-    return d_list
+    if response.status_code == 200:
+        data = response.json()
+        # print(data)
+        values = data['result']['random']['data']
+
+        for value in values:
+            d_list.append(value)
+        return d_list
+    else:
+        for x in range(0, d_num):
+            d_list.append(randint(1, d_size))
+        return d_list
 
 
 def dice_high(d_size, d_num):
