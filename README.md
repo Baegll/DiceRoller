@@ -15,5 +15,3 @@ Exploding Dice using 'e' operator
 
 Re-Roll Dice using 'r' operator
 
-## Known Bugs:
-| separator crashes program, reroll operation does not replace roll values
