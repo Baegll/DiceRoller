@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23000273-6649-4e87-9fdf-189f8a2b313b" name="Changes" comment="fixed bug with math_op adding string to low,avg,rand,high number lists.">
+    <list default="true" id="23000273-6649-4e87-9fdf-189f8a2b313b" name="Changes" comment="changed gets to return total, then the list format.">
+      <change afterPath="$PROJECT_DIR$/DiceBotDiscordExtension.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiceClasses.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiceClasses.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +39,30 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.DiceBotDiscordExtension">
+    <configuration name="DiceBotDiscordExtension" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="DiceRoller" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="RAND_ORG_API_KEY" value="18d81f70-1a1b-4f98-a30d-34c3f72315fc" />
+        <env name="DISCORD_TOKEN" value="MTAyMjU5MDI3NjkyMzAzMTU2Mg.GLbWfn.bVcXIQJv4hrXYZHsbsWyRscQ40nWzS-0kzqVBY" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="C:\Users\jackj\Documents\GitHub\DiceRoller\DiceBotDiscordExtension.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="DiceRoller" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="DiceRoller" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -47,6 +70,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="RAND_ORG_API_KEY" value="18d81f70-1a1b-4f98-a30d-34c3f72315fc" />
+        <env name="DISCORD_TOKEN" value="MTAyMjU5MDI3NjkyMzAzMTU2Mg.GLbWfn.bVcXIQJv4hrXYZHsbsWyRscQ40nWzS-0kzqVBY" />
       </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -62,8 +86,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.DiceRoller" />
+      <item itemvalue="Python.DiceBotDiscordExtension" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.DiceBotDiscordExtension" />
         <item itemvalue="Python.DiceRoller" />
       </list>
     </recent_temporary>
@@ -119,7 +148,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662493253351</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="changed gets to return total, then the list format.">
+      <created>1663715433678</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1663715433678</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -141,6 +177,7 @@
     <MESSAGE value="explode dice attempt" />
     <MESSAGE value="added many functions to get values of things" />
     <MESSAGE value="fixed bug with math_op adding string to low,avg,rand,high number lists." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed bug with math_op adding string to low,avg,rand,high number lists." />
+    <MESSAGE value="changed gets to return total, then the list format." />
+    <option name="LAST_COMMIT_MESSAGE" value="changed gets to return total, then the list format." />
   </component>
 </project>
