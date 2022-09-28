@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23000273-6649-4e87-9fdf-189f8a2b313b" name="Changes" comment="changed gets to return total, then the list format.">
-      <change afterPath="$PROJECT_DIR$/DiceBotDiscordExtension.py" afterDir="false" />
+    <list default="true" id="23000273-6649-4e87-9fdf-189f8a2b313b" name="Changes" comment="discord bot functionality started.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiceBotDiscordExtension.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiceBotDiscordExtension.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiceClasses.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiceClasses.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiceRoller.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiceRoller.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663715433678</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="discord bot functionality started.">
+      <created>1663894386126</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1663894386126</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -178,6 +187,7 @@
     <MESSAGE value="added many functions to get values of things" />
     <MESSAGE value="fixed bug with math_op adding string to low,avg,rand,high number lists." />
     <MESSAGE value="changed gets to return total, then the list format." />
-    <option name="LAST_COMMIT_MESSAGE" value="changed gets to return total, then the list format." />
+    <MESSAGE value="discord bot functionality started." />
+    <option name="LAST_COMMIT_MESSAGE" value="discord bot functionality started." />
   </component>
 </project>

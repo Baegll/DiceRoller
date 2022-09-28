@@ -1,6 +1,7 @@
 # TODO: Restrict bot permissions
 import discord
-from discord.ext import commands
+import DiceRoller
+
 import os
 from dotenv import load_dotenv
 
@@ -9,27 +10,19 @@ BOT_NAME = "DiceBot"
 load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 
-my_intents = discord.Intents.default()
-my_intents.message_content = True
-
-bot = commands.Bot(command_prefix='!', intents=my_intents)
+bot = discord.Bot()
 
 
 @bot.event
 async def on_ready():
-    print(f'{bot.user} is online.')
+    print(f"{bot.user} is ready and online!")
 
 
-@bot.event
-async def on_message(message):
-    if message.author == bot.user:
-        return
-    if message.content == 'testhello':
-        await message.channel.send(f'Hey {message.author}')
+@bot.slash_command(name="singlestat")
+async def singlestat(ctx):
+    full_value = DiceRoller.dice_roller("4d6l1")
+    stat_value = DiceRoller.stat_definer(full_value[0])
+    await ctx.respond(f"Stat value: {full_value[0]}, {stat_value}\nRolls: {full_value[1]}")
 
-
-@bot.command()
-async def test(ctx, arg):
-    await ctx.send(arg)
 
 bot.run(DISCORD_TOKEN)

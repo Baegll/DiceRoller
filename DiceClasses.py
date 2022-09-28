@@ -146,24 +146,26 @@ def dice_high(d_size, d_num):
 
 
 def lose_lowest(d_list, op_num):
-    for x in range(0, op_num):
+    for x in range(0, int(op_num)):
         d_list.remove(min(d_list))
     return d_list
 
 
 def lose_highest(d_list, op_num):
-    for x in range(0, op_num):
+    for x in range(0, int(op_num)):
         d_list.remove(max(d_list))
     return d_list
 
 
-def explode_dice(d_list, d_size, op_num):
+def explode_dice(d_list, d_size, operation_number):
+    print(d_list, d_size, operation_number)
+    op_num = int(operation_number)
     n_dice = 0
     if op_num == 1:
         print("1 would explode indefinitely, using max die size..")
         op_num = d_size
     for die in d_list:
-        if die >= op_num:
+        if die >= int(op_num):
             n_dice = n_dice + 1
     if n_dice > 0:
         return d_list + explode_dice(dice_rand(n_dice, d_size), d_size, op_num)
@@ -173,7 +175,7 @@ def explode_dice(d_list, d_size, op_num):
 def re_roll_dice(d_list, d_size, op_num):
     n_dice = 0
     for die in d_list:
-        if die <= op_num:
+        if die <= int(op_num):
             n_dice = n_dice + 1
             d_list.remove(die)
             return d_list + dice_rand(n_dice, d_size)
